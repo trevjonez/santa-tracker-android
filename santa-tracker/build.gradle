@@ -11,7 +11,7 @@ android {
         applicationId "com.google.android.apps.santatracker"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 40120000
+        versionCode 40120002
         versionName "4.0.12"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
@@ -36,6 +36,9 @@ android {
         production {
         }
         development {
+            minSdkVersion 23        // Tip 2
+            resConfigs ("en", "xxhdpi")   // Tip 3
+
         }
     }
 
@@ -45,32 +48,39 @@ android {
                 variant.getFlavors().get(0).name.equals("development")) {
             variant.setIgnore(true)
         }
-    }
 
-    splits {
-        abi {
-            enable true
-
-            // Include the three architectures that we support for snowdown
-            reset()
-            include(*abiList)
-
-            // Only enable universal build when building dogfood or release
-            def taskList = gradle.startParameter.taskNames.join(",")
-            def isDogfood = taskList.contains("assembleDogfood")
-            def isRelease = taskList.contains("assembleRelease")
-            universalApk (isDogfood || isRelease)
-        }
-
-        density {
-            // TODO: re-enable when we can figure out how to include <=dpi, not just =dpi
-            // as this is preventing games from auto-downsampling bitmaps to prevent OOMs
-            enable false
-            reset()
-            include(*densityList)
-            compatibleScreens 'small', 'normal', 'large', 'xlarge'
+        // Tip 4
+        if (variant.getFlavors().get(0).name.equals("development")) {
+            aaptOptions.cruncherEnabled = false
         }
     }
+
+
+
+//    splits {
+//        abi {
+//            enable true
+//
+//            // Include the three architectures that we support for snowdown
+//            reset()
+//            include(*abiList)
+//
+//            // Only enable universal build when building dogfood or release
+//            def taskList = gradle.startParameter.taskNames.join(",")
+//            def isDogfood = taskList.contains("assembleDogfood")
+//            def isRelease = taskList.contains("assembleRelease")
+//            universalApk (isDogfood || isRelease)
+//        }
+//
+//        density {
+//            // TODO: re-enable when we can figure out how to include <=dpi, not just =dpi
+//            // as this is preventing games from auto-downsampling bitmaps to prevent OOMs
+//            enable false
+//            reset()
+//            include(*densityList)
+//            compatibleScreens 'small', 'normal', 'large', 'xlarge'
+//        }
+//    }
 }
 // Apply signing configurations, keys and other non-version-controlled things
 if (file('../internal/santa-tracker.gradle').exists()) {
