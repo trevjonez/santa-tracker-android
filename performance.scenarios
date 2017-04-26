@@ -26,7 +26,7 @@ incremental_build_java_non-abi_change {
 incremental_build_java_non-abi_and_manifest_change {
 	tasks = ["assembleDevelopmentDebug"]
 	apply-non-abi-change-to = "santa-tracker/src/main/java/com/google/android/apps/santatracker/launch/StartupActivity.java"
-	apply-android-manifest-change-to="santa-tracker/src/main/"
+	apply-android-manifest-change-to="santa-tracker/src/main/AndroidManifest.xml"
 	run-using = cli
 	warm-ups = 4
 

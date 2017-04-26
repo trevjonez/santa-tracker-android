@@ -50,10 +50,21 @@ android {
         }
 
         // Tip 4
-        if (variant.getFlavors().get(0).name.equals("development")) {
+        if (variant.name.contains("development")) {
             aaptOptions.cruncherEnabled = false
         }
+
+
+
     }
+    
+//    applicationVariants.all { variant ->
+//        if (variant.name.contains("development")) {
+//            aaptOptions.cruncherEnabled = false
+//
+//        }
+//    }
+
 
 
 
