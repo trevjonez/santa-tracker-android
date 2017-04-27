@@ -31,3 +31,10 @@ incremental_build_java_non-abi_and_manifest_change {
 	warm-ups = 4
 
 }
+
+incremental_build_resource_change {
+	tasks = ["assembleDevelopmentDebug"]
+	apply-android-resource-change-to = "santa-tracker/src/main/res/values/strings.xml"
+	run-using = cli
+	warm-ups = 4
+}
