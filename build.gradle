@@ -11,7 +11,7 @@ buildscript {
         // scripts/copyOfflineDep.sh to copy the dependency into the offline-lib-repository folder
         maven { url "third_party/offline-lib-repository" }
         maven {
-            url "file:/Users/jameslau/Downloads/Android Studio 2.4 Preview.4.25.app/Contents/gradle/m2repository"
+            url "file:/Users/jameslau/studio-master-dev/out/repo"
         }
         jcenter()
     }
@@ -27,7 +27,7 @@ subprojects {
             url "../third_party/offline-lib-repository"
         }
         maven {
-            url "file:/Users/jameslau/Downloads/Android Studio 2.4 Preview.4.25.app/Contents/gradle/m2repository"
+            url "file:/Users/jameslau/studio-master-dev/out/repo"
         }
     }
 }
