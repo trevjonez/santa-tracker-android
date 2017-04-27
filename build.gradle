@@ -10,10 +10,13 @@ buildscript {
         // When adding new dependencies, first enable jcenter(), then use the
         // scripts/copyOfflineDep.sh to copy the dependency into the offline-lib-repository folder
         maven { url "third_party/offline-lib-repository" }
+        maven {
+            url "file:/Users/jameslau/Downloads/Android Studio 2.4 Preview.4.25.app/Contents/gradle/m2repository"
+        }
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.4.0-alpha6'
+        classpath 'com.android.tools.build:gradle:2.4.0-dev'
         classpath 'com.google.gms:google-services:3.0.0'
     }
 }
@@ -22,6 +25,9 @@ subprojects {
     repositories {
         maven {
             url "../third_party/offline-lib-repository"
+        }
+        maven {
+            url "file:/Users/jameslau/Downloads/Android Studio 2.4 Preview.4.25.app/Contents/gradle/m2repository"
         }
     }
 }

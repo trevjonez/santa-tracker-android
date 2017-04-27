@@ -32,6 +32,8 @@ android {
         }
     }
 
+   flavorDimensions "devProd"
+
     productFlavors {
         production {
         }
@@ -57,14 +59,13 @@ android {
 
 
     }
-    
+
 //    applicationVariants.all { variant ->
 //        if (variant.name.contains("development")) {
 //            aaptOptions.cruncherEnabled = false
 //
 //        }
 //    }
-
 
 
 
