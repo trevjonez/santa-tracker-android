@@ -17,6 +17,10 @@ android {
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
+//    packagingOptions {
+//        exclude "lib/armeabi-v7a/libvrtoolkit.so"
+//    }
+
     buildTypes {
         debug {
             applicationIdSuffix ".debug"

@@ -11,12 +11,12 @@ buildscript {
         // scripts/copyOfflineDep.sh to copy the dependency into the offline-lib-repository folder
         maven { url "third_party/offline-lib-repository" }
         maven {
-            url "file:/Users/jameslau/studio-master-dev/out/repo"
+            url "file:/Users/jameslau/studio-master-weekly/out/repo"
         }
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.4.0-dev'
+        classpath 'com.android.tools.build:gradle:3.0.0-alpha1'
         classpath 'com.google.gms:google-services:3.0.0'
     }
 }
