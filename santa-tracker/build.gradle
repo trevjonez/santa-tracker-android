@@ -17,9 +17,6 @@ android {
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
-//    packagingOptions {
-//        exclude "lib/armeabi-v7a/libvrtoolkit.so"
-//    }
 
     buildTypes {
         debug {
@@ -43,7 +40,7 @@ android {
         }
         development {
             minSdkVersion 23        // Tip 2
-            resConfigs ("en", "xxhdpi")   // Tip 3
+            resConfigs ("en", "xxhdpi")   // Tip 4
 
         }
     }
@@ -55,7 +52,7 @@ android {
             variant.setIgnore(true)
         }
 
-        // Tip 4
+        // Tip 5
         if (variant.name.contains("development")) {
             aaptOptions.cruncherEnabled = false
         }
@@ -72,7 +69,7 @@ android {
 //    }
 
 
-
+// Tip 3
 //    splits {
 //        abi {
 //            enable true
