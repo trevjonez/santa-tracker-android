@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 ext.densityList = ['mdpi', 'hdpi', 'xhdpi', 'xxhdpi', 'xxxhdpi']
 ext.abiList = ['armeabi', 'armeabi-v7a', 'x86']
+ext.splitEnabled = true
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -39,7 +40,7 @@ android {
         production {
         }
         development {
-            minSdkVersion 23        // Tip 2
+            minSdkVersion 21        // Tip 2
             resConfigs ("en", "xxhdpi")   // Tip 4
 
         }
@@ -52,48 +53,44 @@ android {
             variant.setIgnore(true)
         }
 
-        // Tip 5
-        if (variant.name.contains("development")) {
-            aaptOptions.cruncherEnabled = false
-        }
-
 
 
     }
 
-//    applicationVariants.all { variant ->
-//        if (variant.name.contains("development")) {
-//            aaptOptions.cruncherEnabled = false
-//
-//        }
-//    }
+
+    if (project.hasProperty('devBuild')) {
+        splitEnabled = false        // Tip 3
+        aaptOptions.cruncherEnabled = false     // Tip 5
+
+    }
 
 
-// Tip 3
-//    splits {
-//        abi {
-//            enable true
-//
-//            // Include the three architectures that we support for snowdown
-//            reset()
-//            include(*abiList)
-//
-//            // Only enable universal build when building dogfood or release
-//            def taskList = gradle.startParameter.taskNames.join(",")
-//            def isDogfood = taskList.contains("assembleDogfood")
-//            def isRelease = taskList.contains("assembleRelease")
-//            universalApk (isDogfood || isRelease)
-//        }
-//
-//        density {
-//            // TODO: re-enable when we can figure out how to include <=dpi, not just =dpi
-//            // as this is preventing games from auto-downsampling bitmaps to prevent OOMs
-//            enable false
-//            reset()
-//            include(*densityList)
-//            compatibleScreens 'small', 'normal', 'large', 'xlarge'
-//        }
-//    }
+
+
+   splits {
+        abi {
+            enable splitEnabled
+
+            // Include the three architectures that we support for snowdown
+            reset()
+            include(*abiList)
+
+            // Only enable universal build when building dogfood or release
+            def taskList = gradle.startParameter.taskNames.join(",")
+            def isDogfood = taskList.contains("assembleDogfood")
+            def isRelease = taskList.contains("assembleRelease")
+            universalApk (isDogfood || isRelease)
+        }
+
+        density {
+            // TODO: re-enable when we can figure out how to include <=dpi, not just =dpi
+            // as this is preventing games from auto-downsampling bitmaps to prevent OOMs
+            enable false
+            reset()
+            include(*densityList)
+            compatibleScreens 'small', 'normal', 'large', 'xlarge'
+        }
+    }
 }
 // Apply signing configurations, keys and other non-version-controlled things
 if (file('../internal/santa-tracker.gradle').exists()) {
@@ -106,7 +103,7 @@ if (file('../internal/santa-tracker.gradle').exists()) {
 //   YY is the Path version number
 //   SSSS is information about the split (default to 0000)
 // Any new variations get added to the front
-import com.android.build.OutputFile;
+/*import com.android.build.OutputFile;
 android.applicationVariants.all { variant ->
     variant.outputs.each { output ->
         // Shift abi over by 8 digits
@@ -116,7 +113,7 @@ android.applicationVariants.all { variant ->
         // Merge all version codes
         output.versionCodeOverride = variant.mergedFlavor.versionCode + abiVersionCode
     }
-}
+}*/
 
 // Support library aar dependencies are loaded from the SDK
 dependencies {
@@ -128,7 +125,7 @@ dependencies {
     compile project(':doodles')
     compile project(':presentquest')
     wearApp project(':wearable')
-    
+
     compile files('../third_party/jbox2d/jbox2d-library-2.2.1.1.jar')
     compile files('../third_party/youtube/YouTubeAndroidPlayerApi.jar')
 

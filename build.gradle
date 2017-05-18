@@ -2,6 +2,7 @@ buildscript {
     ext.androidHome = project.hasProperty('androidHome') ? androidHome : '../../../..'
 
     repositories {
+
         // Required for offline build.
         // Links to the internal repositories for standard tools.
         maven { url "$androidHome/prebuilts/gradle-plugin" }
@@ -10,13 +11,13 @@ buildscript {
         // When adding new dependencies, first enable jcenter(), then use the
         // scripts/copyOfflineDep.sh to copy the dependency into the offline-lib-repository folder
         maven { url "third_party/offline-lib-repository" }
-        maven {
-            url "file:/Users/jameslau/studio-master-weekly/out/repo"
-        }
+
+        maven { url 'https://maven.google.com' }        // Tip 1 - a
+
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-alpha1'
+        classpath 'com.android.tools.build:gradle:3.0.0-alpha1'     // Tip 1 - b
         classpath 'com.google.gms:google-services:3.0.0'
     }
 }
@@ -26,9 +27,7 @@ subprojects {
         maven {
             url "../third_party/offline-lib-repository"
         }
-        maven {
-            url "file:/Users/jameslau/studio-master-weekly/out/repo"
-        }
+
     }
 }
 
