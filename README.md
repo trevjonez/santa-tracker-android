@@ -3,19 +3,19 @@ Google Santa Tracker for Android
 
 ## About
 
-[Google Santa Tracker app for Android][play-store] is an educational and entertaining tradition that brings joy to millions of children (and children at heart) across the world over the December holiday period. The app is a companion to the [Google Santa Tracker][santa-web] website ([repository here](https://github.com/google/santa-tracker-web)), showcasing unique platform capabilities like Android Wear watchfaces, device notifications and more.
-![Analytics](https://ga-beacon.appspot.com/UA-12846745-20/santa-tracker-android/readme?pixel)
+This repo is a fork of the [Google Santa Tracker app for Android](https://github.com/google/santa-tracker-android).  This for was created to as a companion sample to demonstrate some of the tips and tricks on how to speed up your Android Gradle builds.
+
+## How to use this repo
+Check out this repo and switch to the agp-2.2.0 branch. This branch contains the pre-optimized build configurations. See [Getting the first build working section](#firstbuild).
+
+Best way to observe the build performance in this branch is to use the [Gradle profiler] (https://github.com/gradle/gradle-profiler). You should familiarize yourself with the Gradle profiler before proceeding. Their repo contains excellent documentation.
+
+Once you have observed the build performance of this branch in various scenarios (see `performance.scenarios`), you can switch to agp-3.0.0 branch to observe the optimized build performance by running the same set of build scenarios in `performance.scenarios` file. You can search throughout the project for "Tip" to find the build config tip to achieve the build time improvements.
 
 <img src="res/village.png" height="640" width="360" alt="Village Screenshot" />
 
-## Features
 
-* A beautiful materially designed village
-* Exciting games like Penguin Swim and Rocket Sleigh
-* Interactive Android Wear watchfaces (with sound!)
-* Videos, animations and more.
-
-## Building the app
+## Getting the first build working<a name="firstbuild"></a>
 
 First up, Santa Tracker is powered by [Firebase][firebase], so you'll need to enable it
 on your Google account over at the [Firebase console][fire-console]. Once you're in the
