@@ -22,7 +22,6 @@ abiChange {
 	tasks = [":santa-tracker:assembleDevelopmentDebug"]
 	apply-abi-change-to = "common/src/main/java/com/google/android/apps/santatracker/games/PlayGamesFragment.java"
 	warm-ups = 4
-
 }
 
 nonAbiChange {
@@ -40,7 +39,7 @@ resourceChange {
 
 instantRun {
   tasks = [":santa-tracker:assembleDevelopmentDebug"]
-  apply-non-abi-change-to = "santa-tracker/src/main/java/com/google/android/apps/santatracker/launch/StartupActivity.java"
+  apply-non-abi-change-to = "common/src/main/java/com/google/android/apps/santatracker/games/PlayGamesFragment.java"
   gradle-args = [
     "-Pandroid.injected.invoked.from.ide=true",
     "-Pandroid.injected.build.api=25",
