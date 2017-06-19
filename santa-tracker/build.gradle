@@ -57,12 +57,9 @@ android {
 
     }
 
-
-    if (project.hasProperty('devBuild')) {
-        splitEnabled = false        // Tip 3
-        aaptOptions.cruncherEnabled = false     // Tip 5
-
-    }
+    boolean ciBuild = System.getenv("CI")
+    splitEnabled = ciBuild                   // Tip 3
+    aaptOptions.cruncherEnabled = ciBuild    // Tip 5
 
 
 
