@@ -1,116 +1,47 @@
 # Performance scenarios for santa-tracker-android project
 
-clean_build {
+configurationTime {
+	tasks = ["help"]
+	warm-ups = 10
+}
+
+cleanBuild {
 	tasks = [":santa-tracker:assembleDevelopmentDebug"]
 	cleanup-tasks = ["clean"]
 	warm-ups = 4
 }
 
-incremental_build_java_abi_change {
+abiChange {
 	tasks = [":santa-tracker:assembleDevelopmentDebug"]
-	apply-abi-change-to = "santa-tracker/src/main/java/com/google/android/apps/santatracker/launch/StartupActivity.java"
+	apply-abi-change-to = "common/src/main/java/com/google/android/apps/santatracker/games/PlayGamesFragment.java"
 	warm-ups = 4
 
 }
 
-incremental_build_java_non-abi_change {
+nonAbiChange {
 	tasks = [":santa-tracker:assembleDevelopmentDebug"]
-	apply-non-abi-change-to = "santa-tracker/src/main/java/com/google/android/apps/santatracker/launch/StartupActivity.java"
+	apply-non-abi-change-to = "common/src/main/java/com/google/android/apps/santatracker/games/PlayGamesFragment.java"
 	warm-ups = 4
 
 }
 
-incremental_build_java_non-abi_and_manifest_change {
-	tasks = [":santa-tracker:assembleDevelopmentDebug"]
-	apply-android-manifest-change-to="santa-tracker/src/main/AndroidManifest.xml"
-	apply-non-abi-change-to = "santa-tracker/src/main/java/com/google/android/apps/santatracker/launch/StartupActivity.java"
-	warm-ups = 4
-
-}
-
-incremental_build_resource_change {
+resourceChange {
 	tasks = [":santa-tracker:assembleDevelopmentDebug"]
 	apply-android-resource-value-change-to = "santa-tracker/src/main/res/values/strings.xml"
 	warm-ups = 4
 }
 
-
-incremental_build_resource_change_and_manifest_change {
-	tasks = [":santa-tracker:assembleDevelopmentDebug"]
-	apply-android-manifest-change-to="santa-tracker/src/main/AndroidManifest.xml"
-	apply-android-resource-value-change-to = "santa-tracker/src/main/res/values/strings.xml"
+instantRun {
+  tasks = [":santa-tracker:assembleDevelopmentDebug"]
+  apply-non-abi-change-to = "santa-tracker/src/main/java/com/google/android/apps/santatracker/launch/StartupActivity.java"
+  gradle-args = [
+    "-Pandroid.injected.invoked.from.ide=true",
+    "-Pandroid.injected.build.api=25",
+    "-Pandroid.injected.build.density=420dpi",
+    "-Pandroid.injected.build.abi=x86",
+    "-Pandroid.injected.restrict.variant.name=developmentDebug",
+    "-Pandroid.injected.restrict.variant.project=:santa-tracker",
+    "-Pandroid.optional.compilation=INSTANT_DEV"
+  ]
 	warm-ups = 4
-}
-
-instant_run_clean_build {
-  tasks = [":santa-tracker:assembleDevelopmentDebug"]
-  cleanup-tasks = ["clean"]
-  apply-non-abi-change-to = "santa-tracker/src/main/java/com/google/android/apps/santatracker/launch/StartupActivity.java"
-  gradle-args = [
-    "-Pandroid.injected.invoked.from.ide=true",
-    "-Pandroid.injected.build.api=25",
-    "-Pandroid.injected.build.density=420dpi",
-    "-Pandroid.injected.build.abi=x86",
-    "-Pandroid.injected.restrict.variant.name=developmentDebug",
-    "-Pandroid.injected.restrict.variant.project=:santa-tracker",
-    "-Pandroid.optional.compilation=INSTANT_DEV"
-  ]
-}
-
-instant_run_java_non-abi_change {
-  tasks = [":santa-tracker:assembleDevelopmentDebug"]
-  apply-non-abi-change-to = "santa-tracker/src/main/java/com/google/android/apps/santatracker/launch/StartupActivity.java"
-  gradle-args = [
-    "-Pandroid.injected.invoked.from.ide=true",
-    "-Pandroid.injected.build.api=25",
-    "-Pandroid.injected.build.density=420dpi",
-    "-Pandroid.injected.build.abi=x86",
-    "-Pandroid.injected.restrict.variant.name=developmentDebug",
-    "-Pandroid.injected.restrict.variant.project=:santa-tracker",
-    "-Pandroid.optional.compilation=INSTANT_DEV"
-  ]
-}
-
-instant_run_java_non-abi_and_manifest_change {
-  tasks = [":santa-tracker:assembleDevelopmentDebug"]
-  apply-android-manifest-change-to="santa-tracker/src/main/AndroidManifest.xml"
-  apply-non-abi-change-to = "santa-tracker/src/main/java/com/google/android/apps/santatracker/launch/StartupActivity.java"
-  gradle-args = [
-    "-Pandroid.injected.invoked.from.ide=true",
-    "-Pandroid.injected.build.api=25",
-    "-Pandroid.injected.build.density=420dpi",
-    "-Pandroid.injected.build.abi=x86",
-    "-Pandroid.injected.restrict.variant.name=developmentDebug",
-    "-Pandroid.injected.restrict.variant.project=:santa-tracker",
-    "-Pandroid.optional.compilation=INSTANT_DEV"
-  ]
-}
-
-instant_run_resource_change {
-  tasks = [":santa-tracker:assembleDevelopmentDebug"]
-  apply-android-resource-change-to = "santa-tracker/src/main/res/values/strings.xml"
-  gradle-args = [
-    "-Pandroid.injected.invoked.from.ide=true",
-    "-Pandroid.injected.build.api=25",
-    "-Pandroid.injected.build.density=420dpi",
-    "-Pandroid.injected.build.abi=x86",
-    "-Pandroid.injected.restrict.variant.name=developmentDebug",
-    "-Pandroid.injected.restrict.variant.project=:santa-tracker",
-    "-Pandroid.optional.compilation=INSTANT_DEV"
-  ]
-}
-
-instant_run_resource_change_and_manifest_change {
-  tasks = [":santa-tracker:assembleDevelopmentDebug"]
-  apply-android-manifest-change-to="santa-tracker/src/main/AndroidManifest.xml"
-  apply-android-resource-change-to = "santa-tracker/src/main/res/values/strings.xml"
-  gradle-args = [
-    "-Pandroid.injected.invoked.from.ide=true",
-    "-Pandroid.injected.build.api=25",
-    "-Pandroid.injected.build.density=420dpi",
-    "-Pandroid.injected.build.abi=x86",
-    "-Pandroid.injected.restrict.variant.name=developmentDebug",
-    "-Pandroid.injected.restrict.variant.project=:santa-tracker",
-    "-Pandroid.optional.compilation=INSTANT_DEV"
-  ]
 }

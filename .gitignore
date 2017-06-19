@@ -7,3 +7,5 @@ build/
 *.apk
 *.zip
 google-services.json
+profile-out*
+gradle-user-home
