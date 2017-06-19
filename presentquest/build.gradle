@@ -12,19 +12,19 @@ android {
 }
 
 dependencies {
-    compile project(':common')
+    implementation project(':common')
 
-    compile rootProject.ext.appCompat
-    compile rootProject.ext.design
-    compile rootProject.ext.constraintLayout
+    implementation rootProject.ext.appCompat
+    implementation rootProject.ext.design
+    implementation rootProject.ext.constraintLayout
 
-    compile rootProject.ext.playServicesMaps
-    compile rootProject.ext.playServicesLocation
-    compile rootProject.ext.playServicesPlaces
+    implementation rootProject.ext.playServicesMaps
+    implementation rootProject.ext.playServicesLocation
+    implementation rootProject.ext.playServicesPlaces
 
-    compile rootProject.ext.firebaseConfig
+    implementation rootProject.ext.firebaseConfig
 
-    compile rootProject.ext.sugarOrm
+    api rootProject.ext.sugarOrm
 
-    compile rootProject.ext.easypermissions
+    implementation rootProject.ext.easypermissions
 }

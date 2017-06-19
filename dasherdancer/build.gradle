@@ -11,7 +11,7 @@ android {
 }
 
 dependencies {
-    compile project(':common')
-    compile rootProject.ext.supportV4
-    compile rootProject.ext.seismic
+    implementation project(':common')
+    implementation rootProject.ext.supportV4
+    implementation rootProject.ext.seismic
 }

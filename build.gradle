@@ -23,7 +23,7 @@ ext {
     targetSdkVersion = 24
 
     tools = '25.0.2'
-    support = '24.2.0'
+    support = '24.2.1'
     supportV4 = "com.android.support:support-v4:$support"
     supportAnnotations = "com.android.support:support-annotations:$support"
     appCompat = "com.android.support:appcompat-v7:$support"

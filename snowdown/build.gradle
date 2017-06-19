@@ -31,16 +31,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'src/main/jniLibs', include: ['*.jar'])
+    implementation fileTree(dir: 'src/main/jniLibs', include: ['*.jar'])
 
-    compile project(':common')
+    implementation project(':common')
 
     // Used in Java code
-    compile rootProject.ext.supportV4
-    compile rootProject.ext.playServicesBasement
-    compile rootProject.ext.playServicesAnalytics
-    compile rootProject.ext.firebaseAnalytics
+    implementation rootProject.ext.supportV4
+    implementation rootProject.ext.playServicesBasement
+    implementation rootProject.ext.playServicesAnalytics
+    implementation rootProject.ext.firebaseAnalytics
 
     // Used in native code
-    compile rootProject.ext.playServicesNearby
+    implementation rootProject.ext.playServicesNearby
 }

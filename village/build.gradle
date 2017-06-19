@@ -11,6 +11,6 @@ android {
 }
 
 dependencies {
-    compile project(':common')
-    compile rootProject.ext.supportV4
+    implementation project(':common')
+    implementation rootProject.ext.supportV4
 }
