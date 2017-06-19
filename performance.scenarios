@@ -11,6 +11,13 @@ cleanBuild {
 	warm-ups = 4
 }
 
+cachedCleanBuild {
+	tasks = [":santa-tracker:assembleDevelopmentDebug"]
+	cleanup-tasks = ["clean"]
+	gradle-args = ["--build-cache"]
+	warm-ups = 4
+}
+
 abiChange {
 	tasks = [":santa-tracker:assembleDevelopmentDebug"]
 	apply-abi-change-to = "common/src/main/java/com/google/android/apps/santatracker/games/PlayGamesFragment.java"
