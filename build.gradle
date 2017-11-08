@@ -6,7 +6,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-alpha4'     // Tip 1 - b
+        classpath 'com.android.tools.build:gradle:3.0.0'     // Tip 1 - b
         classpath 'com.google.gms:google-services:3.0.0'
     }
 }
