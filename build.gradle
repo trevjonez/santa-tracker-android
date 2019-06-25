@@ -26,7 +26,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0-beta01'
+        classpath 'com.android.tools.build:gradle:3.6.0-alpha03'
         classpath 'com.google.gms:google-services:4.2.0'
         classpath 'com.google.android.gms:oss-licenses-plugin:0.9.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin"
@@ -42,7 +42,7 @@ ext {
     versionName = "5.3.1"
     versionCode = 53010005
 
-    minSdkVersion = 21
+    minSdkVersion = 24
     compileSdkVersion = 28
     targetSdkVersion = 27
 
