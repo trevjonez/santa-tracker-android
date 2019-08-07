@@ -35,6 +35,15 @@ android {
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         wearAppUnbundled true
+
+	javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                   "dagger.gradle.incremental": "true",
+                   "room.incremental":"true"
+                ]
+            }
+        }
     }
 
     buildTypes {
