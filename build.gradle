@@ -36,7 +36,16 @@ buildscript {
 }
 
 plugins {
-    id 'com.gradle.build-scan' version '2.1'
+    id 'com.gradle.build-scan' version '2.1' apply false
+}
+
+if (!hasProperty("disableBuildScan")) {
+    apply plugin: "com.gradle.build-scan"
+    buildScan {
+        termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+        termsOfServiceAgree = 'yes'
+        captureTaskInputFiles = true
+    }
 }
 
 ext {
@@ -145,12 +154,6 @@ ext {
     playCore = 'com.google.android.play:core:1.3.6'
 
     mergeAdapter = 'me.mvdw.recyclerviewmergeadapter:recyclerviewmergeadapter:2.1.0'
-}
-
-buildScan {
-    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
-    termsOfServiceAgree = 'yes'
-    captureTaskInputFiles = true
 }
 
 subprojects {
