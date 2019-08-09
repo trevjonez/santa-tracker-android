@@ -35,6 +35,15 @@ android {
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         wearAppUnbundled true
+
+	javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                   "dagger.gradle.incremental": "true",
+                   "room.incremental":"true"
+                ]
+            }
+        }
     }
 
     buildTypes {
@@ -151,5 +160,5 @@ dependencies {
     androidTestImplementation rootProject.ext.testingSupportRules
 }
 
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
