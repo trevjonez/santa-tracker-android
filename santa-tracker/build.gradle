@@ -161,4 +161,6 @@ dependencies {
 }
 
 //apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+// https://github.com/gradle/gradle/issues/11114
+// https://github.com/google/play-services-plugins/issues/106
+//apply plugin: 'com.google.android.gms.oss-licenses-plugin'
