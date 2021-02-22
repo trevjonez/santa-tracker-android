@@ -22,10 +22,11 @@ buildscript {
 
     repositories {
         maven { url 'https://repo.gradle.org/gradle/ext-snapshots-local/' }
+        maven { url 'https://repo.gradle.org/gradle/libs/' }
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
         maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
@@ -169,10 +170,10 @@ subprojects {
 
     repositories {
         maven { url 'https://repo.gradle.org/gradle/ext-snapshots-local/' }
+        maven { url 'https://repo.gradle.org/gradle/libs/' }
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
         maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
         google()
         mavenCentral()
-        jcenter()
     }
 }
