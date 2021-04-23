@@ -24,6 +24,11 @@ ext.abiList = ['armeabi', 'armeabi-v7a', 'x86']
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "com.google.android.apps.santatracker"
 
