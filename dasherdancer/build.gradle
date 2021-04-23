@@ -19,7 +19,6 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.tools
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
