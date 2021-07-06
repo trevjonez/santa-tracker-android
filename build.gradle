@@ -172,7 +172,7 @@ subprojects {
             includeModule "com.google.android", "flexbox"
           }
         }
-        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+        maven { url 'https://repo.grdev.net/artifactory/kotlin-eap' }
         maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
         google()
         mavenCentral()
