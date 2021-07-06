@@ -22,7 +22,7 @@ buildscript {
 
     repositories {
         maven { url 'https://repo.grdev.net/artifactory/kotlin-eap' }
-        maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
+        maven { url 'https://repo.grdev.net/artifactory/kotlin-dev' }
         google()
         mavenCentral()
     }
@@ -173,7 +173,7 @@ subprojects {
           }
         }
         maven { url 'https://repo.grdev.net/artifactory/kotlin-eap' }
-        maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
+        maven { url 'https://repo.grdev.net/artifactory/kotlin-dev' }
         google()
         mavenCentral()
     }
