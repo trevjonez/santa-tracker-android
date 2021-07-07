@@ -21,8 +21,6 @@ buildscript {
     ext.googlejavaformat = '1.6'
 
     repositories {
-        maven { url 'https://repo.grdev.net/artifactory/kotlin-eap' }
-        maven { url 'https://repo.grdev.net/artifactory/kotlin-dev' }
         google()
         mavenCentral()
     }
@@ -172,8 +170,6 @@ subprojects {
             includeModule "com.google.android", "flexbox"
           }
         }
-        maven { url 'https://repo.grdev.net/artifactory/kotlin-eap' }
-        maven { url 'https://repo.grdev.net/artifactory/kotlin-dev' }
         google()
         mavenCentral()
     }
