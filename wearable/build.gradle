@@ -20,11 +20,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+    buildToolsVersion rootProject.ext.tools
 
     defaultConfig {
         applicationId "com.google.android.apps.santatracker"
