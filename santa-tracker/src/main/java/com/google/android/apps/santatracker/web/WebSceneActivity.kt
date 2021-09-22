@@ -226,7 +226,7 @@ abstract class WebSceneActivity : AppCompatActivity(), Injectable {
 
         santaPreferences = SantaPreferences(this)
 
-        var url = extractUrl(intent)
+        var url: String = extractUrl(intent) ?: "foo"
         if (url.isNullOrBlank()) {
             recordErrorEvent("Missing URL")
             finishWithError()

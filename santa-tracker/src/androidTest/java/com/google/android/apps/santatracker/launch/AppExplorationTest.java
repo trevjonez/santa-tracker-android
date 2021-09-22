@@ -39,6 +39,9 @@ import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
+
+import com.google.android.apps.santatracker.R;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -135,7 +138,7 @@ public class AppExplorationTest {
         ViewInteraction floatingActionButton =
                 onView(
                         allOf(
-                                withId(com.google.android.apps.santatracker.R.id.fab_location),
+                                withId(R.id.fab_leaderboard),
                                 isDisplayed()));
         floatingActionButton.perform(click());
 
@@ -143,7 +146,7 @@ public class AppExplorationTest {
         ViewInteraction imageView =
                 onView(
                         allOf(
-                                withId(com.google.android.apps.santatracker.R.id.map_user_image),
+                                withId(R.id.map),
                                 isDisplayed()));
         imageView.perform(click());
 
@@ -151,151 +154,16 @@ public class AppExplorationTest {
         ViewInteraction appCompatImageView =
                 onView(
                         allOf(
-                                withId(com.google.android.apps.santatracker.R.id.arrow_right),
-                                withParent(
-                                        withId(
-                                                com.google
-                                                        .android
-                                                        .apps
-                                                        .santatracker
-                                                        .R
-                                                        .id
-                                                        .activity_profile))));
+                                withId(R.id.right_star),
+                                withParent(withId(R.id.activity_wrapper))));
         appCompatImageView.perform(scrollTo(), click());
 
         ViewInteraction appCompatImageView2 =
                 onView(
                         allOf(
-                                withId(com.google.android.apps.santatracker.R.id.arrow_right),
-                                withParent(
-                                        withId(
-                                                com.google
-                                                        .android
-                                                        .apps
-                                                        .santatracker
-                                                        .R
-                                                        .id
-                                                        .activity_profile))));
+                                withId(R.id.right_star),
+                                withParent(withId(R.id.activity_wrapper))));
         appCompatImageView2.perform(scrollTo(), click());
-
-        ViewInteraction appCompatImageView3 =
-                onView(
-                        allOf(
-                                withId(com.google.android.apps.santatracker.R.id.arrow_right),
-                                withParent(
-                                        withId(
-                                                com.google
-                                                        .android
-                                                        .apps
-                                                        .santatracker
-                                                        .R
-                                                        .id
-                                                        .activity_profile))));
-        appCompatImageView3.perform(scrollTo(), click());
-
-        // Click the left arrow a few times
-        ViewInteraction appCompatImageView4 =
-                onView(
-                        allOf(
-                                withId(com.google.android.apps.santatracker.R.id.arrow_left),
-                                withParent(
-                                        withId(
-                                                com.google
-                                                        .android
-                                                        .apps
-                                                        .santatracker
-                                                        .R
-                                                        .id
-                                                        .activity_profile))));
-        appCompatImageView4.perform(scrollTo(), click());
-
-        ViewInteraction appCompatImageView5 =
-                onView(
-                        allOf(
-                                withId(com.google.android.apps.santatracker.R.id.arrow_left),
-                                withParent(
-                                        withId(
-                                                com.google
-                                                        .android
-                                                        .apps
-                                                        .santatracker
-                                                        .R
-                                                        .id
-                                                        .activity_profile))));
-        appCompatImageView5.perform(scrollTo(), click());
-
-        ViewInteraction appCompatImageView6 =
-                onView(
-                        allOf(
-                                withId(com.google.android.apps.santatracker.R.id.arrow_left),
-                                withParent(
-                                        withId(
-                                                com.google
-                                                        .android
-                                                        .apps
-                                                        .santatracker
-                                                        .R
-                                                        .id
-                                                        .activity_profile))));
-        appCompatImageView6.perform(scrollTo(), click());
-
-        ViewInteraction appCompatImageView7 =
-                onView(
-                        allOf(
-                                withId(com.google.android.apps.santatracker.R.id.arrow_left),
-                                withParent(
-                                        withId(
-                                                com.google
-                                                        .android
-                                                        .apps
-                                                        .santatracker
-                                                        .R
-                                                        .id
-                                                        .activity_profile))));
-        appCompatImageView7.perform(scrollTo(), click());
-
-        // Right arrow again
-        ViewInteraction appCompatImageView8 =
-                onView(
-                        allOf(
-                                withId(com.google.android.apps.santatracker.R.id.arrow_right),
-                                withParent(
-                                        withId(
-                                                com.google
-                                                        .android
-                                                        .apps
-                                                        .santatracker
-                                                        .R
-                                                        .id
-                                                        .activity_profile))));
-        appCompatImageView8.perform(scrollTo(), click());
-
-        // Go back to the map screen
-        pressBack();
-
-        // Click the user image again
-        ViewInteraction imageView2 =
-                onView(
-                        allOf(
-                                withId(com.google.android.apps.santatracker.R.id.map_user_image),
-                                isDisplayed()));
-        imageView2.perform(click());
-
-        // Click the button to edit the first workshop
-        ViewInteraction appCompatImageView9 =
-                onView(
-                        allOf(
-                                withId(com.google.android.apps.santatracker.R.id.button_edit_1),
-                                withParent(
-                                        withId(
-                                                com.google
-                                                        .android
-                                                        .apps
-                                                        .santatracker
-                                                        .R
-                                                        .id
-                                                        .activity_profile))));
-        appCompatImageView9.perform(scrollTo(), click());
 
         // Cancel workshop move by pressing back
         pressBack();
