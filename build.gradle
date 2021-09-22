@@ -26,9 +26,9 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:${providers.systemProperty("agpVersion").forUseAtConfigurationTime().orNull ?: '4.1.3'}"
-        classpath 'com.google.gms:google-services:4.2.0'
-        classpath 'com.google.android.gms:oss-licenses-plugin:0.9.4'
+        classpath "com.android.tools.build:gradle:${providers.systemProperty("com.android.gradle.version").forUseAtConfigurationTime().orNull ?: '4.1.3'}"
+        classpath 'com.google.gms:google-services:4.3.5'
+        //classpath 'com.google.android.gms:oss-licenses-plugin:0.9.4' // This plugin has issues that would fail the build with Gradle 7.0+ (see bug 184258452)
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin"
         classpath "com.diffplug.spotless:spotless-plugin-gradle:$spotless"
     }
@@ -39,8 +39,10 @@ ext {
     versionCode = 53010005
 
     minSdkVersion = 26
-    compileSdkVersion = 28
-    targetSdkVersion = 27
+    compileSdkVersion = 30
+    targetSdkVersion = 30
+
+    tools = '30.0.2'
 
     supportAnnotations = "androidx.annotation:annotation:1.0.1"
     appCompat = "androidx.appcompat:appcompat:1.0.2"
@@ -63,7 +65,7 @@ ext {
     archLifecycleExtentions = "androidx.lifecycle:lifecycle-extensions:$archLifecycle"
     archLifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:$archLifecycle"
 
-    archRoom = "2.2.0-alpha01"
+    archRoom = "2.2.4"
     archRoomRuntime = "androidx.room:room-runtime:$archRoom"
     archRoomCompiler = "androidx.room:room-compiler:$archRoom"
     archRoomTesting = "androidx.room:room-testing:$archRoom"
@@ -163,12 +165,12 @@ subprojects {
     }
 
     repositories {
-        maven { 
-          url 'https://repo.gradle.org/gradle/libs/'
-          content {
-            includeModule "me.mvdw.recyclerviewmergeadapter", "recyclerviewmergeadapter"
-            includeModule "com.google.android", "flexbox"
-          }
+        maven {
+            url 'https://repo.gradle.org/gradle/libs/'
+            content {
+                includeModule "me.mvdw.recyclerviewmergeadapter", "recyclerviewmergeadapter"
+                includeModule "com.google.android", "flexbox"
+            }
         }
         google()
         mavenCentral()
