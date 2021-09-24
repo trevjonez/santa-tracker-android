@@ -202,7 +202,7 @@ class TrackerMapFragment : SupportMapFragment(), SantaMarker.SantaMarkerInterfac
         visitedDestinations = state.visitedDestinations
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         val activity = activity ?: return
         soundPlayer = TrackerSoundPlayer(activity)

@@ -95,8 +95,6 @@ dependencies {
 
     implementation rootProject.ext.glide
 
-    implementation rootProject.ext.truetime
-
     // Testing
     testImplementation rootProject.ext.junit
     testImplementation rootProject.ext.leakCanaryNoOp

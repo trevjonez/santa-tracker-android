@@ -17,9 +17,6 @@
 package com.google.android.apps.santatracker.tracker.time
 
 import com.google.android.apps.santatracker.config.Config
-import com.google.android.apps.santatracker.util.SantaLog
-import com.instacart.library.truetime.TrueTime
-import java.io.IOException
 import java.util.Calendar
 import java.util.GregorianCalendar
 import java.util.Locale
@@ -37,27 +34,11 @@ open class OffsettableClock(private val config: Config, executor: Executor) : Cl
         private val TIME_FORMAT = "%02d:%02d"
     }
 
-    init {
-        // The app has only 1 instance of this class (because this is provided as @Singleton in
-        // AppModule). So init is going to be executed once.
-        executor.execute {
-            try {
-                TrueTime.build().initialize()
-                SantaLog.d(TAG, "TrueTime: initialized")
-            } catch (e: IOException) {
-                SantaLog.w(TAG, "TrueTime: initialization failed", e)
-            }
-        }
-    }
-
     open val timeOffset: Long
         get() = config.get(Config.TIME_OFFSET)
 
     override fun nowMillis(): Long {
-        val nowMillis = if (TrueTime.isInitialized())
-            TrueTime.now().time
-        else
-            System.currentTimeMillis()
+        val nowMillis = System.currentTimeMillis()
         return nowMillis + timeOffset
     }
 
