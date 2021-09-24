@@ -26,7 +26,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:${providers.systemProperty("com.android.gradle.version").forUseAtConfigurationTime().orNull ?: '4.1.3'}"
+        classpath "com.android.tools.build:gradle:${providers.systemProperty("agpVersion").forUseAtConfigurationTime().orNull ?: '4.1.3'}"
         classpath 'com.google.gms:google-services:4.3.5'
         //classpath 'com.google.android.gms:oss-licenses-plugin:0.9.4' // This plugin has issues that would fail the build with Gradle 7.0+ (see bug 184258452)
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin"
