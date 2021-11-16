@@ -23,6 +23,7 @@ ext.abiList = ['armeabi', 'armeabi-v7a', 'x86']
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.tools
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -164,7 +165,7 @@ dependencies {
     androidTestImplementation rootProject.ext.testingSupportRules
 }
 
-//apply plugin: 'com.google.gms.google-services'
-// https://github.com/gradle/gradle/issues/11114
-// https://github.com/google/play-services-plugins/issues/106
-//apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+if (project.file('google-services.json').exists()) {
+    apply plugin: 'com.google.gms.google-services'
+}
+// apply plugin: 'com.google.android.gms.oss-licenses-plugin' // This plugin has issues that would fail the build with Gradle 7.0+ (see bug 184258452)

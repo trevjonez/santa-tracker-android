@@ -21,6 +21,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.tools
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

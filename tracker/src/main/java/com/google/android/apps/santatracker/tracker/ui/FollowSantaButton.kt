@@ -122,22 +122,5 @@ class FollowSantaButton @JvmOverloads constructor(
 
         private val ref = WeakReference(button)
 
-        override fun handleMessage(msg: Message?) {
-            if (msg != null && msg.what == MESSAGE_COUNTDOWN) {
-                val button = ref.get()
-                if (button != null) {
-                    val count = msg.arg1
-                    if (count > 0) {
-                        button.showMessage(count.toString(), 500)
-                        sendMessageDelayed(Message.obtain(this, MESSAGE_COUNTDOWN, count - 1, 0),
-                                1000)
-                    } else if (count == 0) {
-                        button.performClick()
-                    }
-                }
-            } else {
-                super.handleMessage(msg)
-            }
-        }
     }
 }

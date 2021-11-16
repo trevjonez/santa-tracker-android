@@ -16,4 +16,4 @@
 
 package com.google.android.apps.santatracker.tracker
 
-class TestActivity : LifecycleActivity()
+class TestActivity
