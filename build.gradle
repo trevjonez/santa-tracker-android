@@ -39,8 +39,8 @@ ext {
     versionCode = 53010005
 
     minSdkVersion = 23
-    compileSdkVersion = 30
-    targetSdkVersion = 30
+    compileSdkVersion = 31
+    targetSdkVersion = 31
 
     tools = '30.0.2'
 
