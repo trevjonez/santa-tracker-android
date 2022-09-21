@@ -42,7 +42,7 @@ ext {
     compileSdkVersion = 31
     targetSdkVersion = 31
 
-    tools = '30.0.2'
+    tools = '30.0.3'
 
     supportAnnotations = "androidx.annotation:annotation:1.0.1"
     appCompat = "androidx.appcompat:appcompat:1.0.2"
