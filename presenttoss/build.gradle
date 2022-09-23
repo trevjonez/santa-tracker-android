@@ -29,6 +29,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
     }
+    namespace 'com.google.android.apps.santatracker.doodles.presenttoss'
 }
 
 dependencies {

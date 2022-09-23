@@ -97,10 +97,11 @@ class SplashActivity : AppCompatActivity() {
 
     private lateinit var title: String
 
-    private val intentToLaunch: Intent =
+    private val intentToLaunch: Intent by lazy {
         intent.getParcelableExtra<Intent>(EXTRA_GAME_INTENT)!!.apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
