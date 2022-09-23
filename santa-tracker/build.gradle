@@ -89,6 +89,7 @@ android {
     lintOptions {
         disable 'MissingTranslation', 'ExtraTranslation'
     }
+    namespace 'com.google.android.apps.santatracker'
 }
 
 dependencies {

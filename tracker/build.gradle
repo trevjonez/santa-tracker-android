@@ -52,6 +52,7 @@ android {
             includeAndroidResources = true
         }
     }
+    namespace 'com.google.android.apps.santatracker.tracker'
 
     configurations.all {
         // Required by playServicesCastFramework
@@ -99,6 +100,8 @@ dependencies {
     kapt rootProject.ext.daggerCompiler
 
     implementation rootProject.ext.glide
+
+    // implementation rootProject.ext.truetime - This dependency causes error when merging androidTest manifest.
 
     // Testing
     testImplementation rootProject.ext.junit

@@ -46,6 +46,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-wear.txt'
         }
     }
+    namespace 'com.google.android.apps.santatracker'
 
     configurations.all {
         // Required by supportWearable, but it requests the old version of support lib.

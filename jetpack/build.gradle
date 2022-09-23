@@ -31,6 +31,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
+    namespace 'com.google.android.apps.jetpack'
 }
 
 dependencies {
