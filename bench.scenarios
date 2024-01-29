@@ -1,0 +1,17 @@
+assembleKapt {
+    tasks = ["santa-tracker:assembleDebug"]
+    gradle-args = ["-Dscan.tag.KspDagger", "--rerun-tasks", "-Dscan.tag.assembleKapt", "-PuseKsp=false"]
+    run-using = tooling-api
+    daemon = warm
+    warm-ups = 1
+    iterations = 2
+}
+
+assembleKsp {
+    tasks = ["santa-tracker:assembleDebug"]
+    gradle-args = ["-Dscan.tag.KspDagger", "--rerun-tasks", "-Dscan.tag.assembleKsp", "-PuseKsp=true"]
+    run-using = tooling-api
+    daemon = warm
+    warm-ups = 1
+    iterations = 2
+}

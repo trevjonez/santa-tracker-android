@@ -24,7 +24,6 @@ import android.os.Handler
 import androidx.annotation.DrawableRes
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.google.android.apps.santatracker.tracker.R
 import com.google.android.apps.santatracker.tracker.audio.TrackerSoundPlayer
@@ -173,8 +172,7 @@ class TrackerMapFragment : SupportMapFragment(), SantaMarker.SantaMarkerInterfac
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val activity = activity ?: return
-        viewModel = ViewModelProviders.of(activity, viewModelFactory)
-                .get(TrackerViewModel::class.java)
+        viewModel = ViewModelProvider(activity, viewModelFactory)[TrackerViewModel::class.java]
         val lifecycleOwner = activity as LifecycleOwner
         viewModel.santaState.observeNonNull(lifecycleOwner, this::adjustSantaState)
     }

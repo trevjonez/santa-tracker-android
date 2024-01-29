@@ -89,7 +89,6 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.santatracker.AppIndexingUpdateServiceKt;
@@ -139,7 +138,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.messaging.FirebaseMessaging;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
+import dagger.android.HasAndroidInjector;
 import me.mvdw.recyclerviewmergeadapter.adapter.RecyclerViewMergeAdapter;
 
 import java.util.Calendar;
@@ -160,7 +159,7 @@ public class StartupActivity extends AppCompatActivity
                 SignInListener,
                 SantaContext,
                 LaunchCountdown.LaunchCountdownContext,
-                HasSupportFragmentInjector {
+                HasAndroidInjector {
 
     public static final String EXTRA_DISABLE_ANIMATIONS = "disable_animations";
     protected static final String TAG = "SantaStart";
@@ -170,7 +169,7 @@ public class StartupActivity extends AppCompatActivity
     private final int RC_STARTUP = 1111;
     private final int RC_GAMES = 9999;
     @Inject Config mConfig;
-    @Inject DispatchingAndroidInjector<Fragment> mAndroidInjector;
+    @Inject DispatchingAndroidInjector<Object> mAndroidInjector;
     @Inject ViewModelProvider.Factory mViewModelFactory;
     @Inject Clock mClock;
     private PlayGamesFragment mGamesFragment;
@@ -238,7 +237,7 @@ public class StartupActivity extends AppCompatActivity
 
         // Get view models
         mVillageViewModel =
-                ViewModelProviders.of(this, mViewModelFactory).get(VillageViewModel.class);
+                new ViewModelProvider(this, mViewModelFactory).get(VillageViewModel.class);
 
         // Restore state
         mPreferences = new SantaPreferences(this);
@@ -1418,7 +1417,8 @@ public class StartupActivity extends AppCompatActivity
         mLaunchSantaTracker.onClick(mLaunchSantaTracker.getClickTarget());
     }
 
-    public AndroidInjector<Fragment> supportFragmentInjector() {
+    @Override
+    public AndroidInjector<Object> androidInjector() {
         return mAndroidInjector;
     }
 

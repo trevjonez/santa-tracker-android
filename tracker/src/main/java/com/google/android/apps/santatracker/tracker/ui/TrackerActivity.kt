@@ -38,7 +38,6 @@ import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -69,10 +68,10 @@ import com.google.android.gms.cast.framework.SessionManagerListener
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-open class TrackerActivity : OnDemandActivity(), HasSupportFragmentInjector,
+open class TrackerActivity : OnDemandActivity(), HasAndroidInjector,
         TrackerMapFragment.TrackerMapCallback {
 
     companion object {
@@ -84,7 +83,7 @@ open class TrackerActivity : OnDemandActivity(), HasSupportFragmentInjector,
         private val FADE = Fade().apply { duration = 200 }
     }
 
-    @Inject lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+    @Inject lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var clock: Clock
     @Inject lateinit var firebaseAnalytics: FirebaseAnalytics
@@ -245,7 +244,7 @@ open class TrackerActivity : OnDemandActivity(), HasSupportFragmentInjector,
         buttonTop = findViewById(R.id.top)
         buttonFollowSanta = findViewById(R.id.follow_santa)
         // View Model
-        trackerViewModel = ViewModelProviders.of(this, viewModelFactory).get(TrackerViewModel::class.java)
+        trackerViewModel = ViewModelProvider(owner = this, factory = viewModelFactory)[TrackerViewModel::class.java]
         trackerViewModel.presentsDelivered.observeNonNull(this) {
             cardAdapter.dashboard.presents.text = it
         }
@@ -442,7 +441,7 @@ open class TrackerActivity : OnDemandActivity(), HasSupportFragmentInjector,
                         stream, accessibilityManager)
     }
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingAndroidInjector
+    override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
 
     private fun setSantaDisabled(disableApp: Boolean) {
         if (disableApp) {

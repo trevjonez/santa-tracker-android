@@ -16,7 +16,13 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+if (project.useKsp == "true") {
+    println("using KSP for dagger processing")
+    apply plugin: 'com.google.devtools.ksp'
+} else {
+    println("using KAPT for dagger processing")
+    apply plugin: 'kotlin-kapt'
+}
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -69,9 +75,7 @@ dependencies {
     // Architecture Components
     implementation rootProject.ext.archLifecycleRuntime
     implementation rootProject.ext.archLifecycleExtentions
-    kapt rootProject.ext.archLifecycleCompiler
     implementation rootProject.ext.archRoomRuntime
-    kapt rootProject.ext.archRoomCompiler
     testImplementation rootProject.ext.archRoomTesting
 
     // Play Services
@@ -91,8 +95,6 @@ dependencies {
     implementation rootProject.ext.daggerCore
     implementation rootProject.ext.daggerAndroid
     implementation rootProject.ext.daggerAndroidSupport
-    kapt rootProject.ext.daggerAndroidProcessor
-    kapt rootProject.ext.daggerCompiler
 
     implementation rootProject.ext.glide
 
@@ -107,4 +109,16 @@ dependencies {
     androidTestImplementation rootProject.ext.testingSupportRunner
     androidTestImplementation rootProject.ext.mockitoAndroid
     androidTestImplementation rootProject.ext.firebaseConfig
+
+    if (project.useKsp == "true") {
+        ksp rootProject.ext.archLifecycleCompiler
+        ksp rootProject.ext.archRoomCompiler
+        ksp rootProject.ext.daggerAndroidProcessor
+        ksp rootProject.ext.daggerCompiler
+    } else {
+        kapt rootProject.ext.archLifecycleCompiler
+        kapt rootProject.ext.archRoomCompiler
+        kapt rootProject.ext.daggerAndroidProcessor
+        kapt rootProject.ext.daggerCompiler
+    }
 }

@@ -16,7 +16,13 @@
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+if (project.useKsp == "true") {
+    println("using KSP for dagger processing")
+    apply plugin: 'com.google.devtools.ksp'
+} else {
+    println("using KAPT for dagger processing")
+    apply plugin: 'kotlin-kapt'
+}
 
 ext.abiList = ['armeabi', 'armeabi-v7a', 'x86']
 
@@ -116,9 +122,7 @@ dependencies {
 
     api rootProject.ext.archLifecycleRuntime
     api rootProject.ext.archLifecycleExtentions
-    kapt rootProject.ext.archLifecycleCompiler
     api rootProject.ext.archRoomRuntime
-    kapt rootProject.ext.archRoomCompiler
     api rootProject.ext.archRoomTesting
 
     api rootProject.ext.playServicesAnalytics
@@ -139,8 +143,6 @@ dependencies {
     api rootProject.ext.daggerCore
     api rootProject.ext.daggerAndroid
     api rootProject.ext.daggerAndroidSupport
-    kapt rootProject.ext.daggerAndroidProcessor
-    kapt rootProject.ext.daggerCompiler
 
     api rootProject.ext.constraintLayout
 
@@ -163,6 +165,18 @@ dependencies {
     androidTestImplementation rootProject.ext.espressoCore
     androidTestImplementation rootProject.ext.espressoContrib
     androidTestImplementation rootProject.ext.testingSupportRules
+
+    if (project.useKsp == "true") {
+        ksp rootProject.ext.archLifecycleCompiler
+        ksp rootProject.ext.archRoomCompiler
+        ksp rootProject.ext.daggerAndroidProcessor
+        ksp rootProject.ext.daggerCompiler
+    } else {
+        kapt rootProject.ext.archLifecycleCompiler
+        kapt rootProject.ext.archRoomCompiler
+        kapt rootProject.ext.daggerAndroidProcessor
+        kapt rootProject.ext.daggerCompiler
+    }
 }
 
 if (project.file('google-services.json').exists()) {

@@ -16,23 +16,19 @@
 
 package com.google.android.apps.santatracker
 
-import android.app.Activity
-import android.app.Service
 import com.google.android.apps.santatracker.di.AppInjector
 import com.google.android.play.core.splitcompat.SplitCompatApplication
 import com.squareup.leakcanary.LeakCanary
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
-import dagger.android.HasServiceInjector
+import dagger.android.HasAndroidInjector
 import java.util.concurrent.Executor
 import javax.inject.Inject
 
 /** The [android.app.Application] for this Santa application.  */
-class SantaApplication : SplitCompatApplication(), HasActivityInjector, HasServiceInjector {
+class SantaApplication : SplitCompatApplication(), HasAndroidInjector {
 
-    @Inject lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
-    @Inject lateinit var dispatchingServiceInjector: DispatchingAndroidInjector<Service>
+    @Inject lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     @Inject lateinit var executor: Executor
 
@@ -57,11 +53,7 @@ class SantaApplication : SplitCompatApplication(), HasActivityInjector, HasServi
         }
     }
 
-    override fun activityInjector(): AndroidInjector<Activity>? {
-        return dispatchingActivityInjector
-    }
-
-    override fun serviceInjector(): AndroidInjector<Service>? {
-        return dispatchingServiceInjector
+    override fun androidInjector(): AndroidInjector<Any> {
+        return dispatchingAndroidInjector
     }
 }

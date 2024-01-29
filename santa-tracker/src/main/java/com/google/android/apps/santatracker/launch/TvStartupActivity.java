@@ -48,7 +48,6 @@ import androidx.leanback.widget.Presenter;
 import androidx.leanback.widget.VerticalGridView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.google.android.apps.santatracker.AudioPlayer;
 import com.google.android.apps.santatracker.BuildConfig;
@@ -67,7 +66,8 @@ import com.google.android.apps.santatracker.viewmodel.VillageViewModel;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
+import dagger.android.HasAndroidInjector;
+
 import javax.inject.Inject;
 
 /**
@@ -79,13 +79,13 @@ public class TvStartupActivity extends FragmentActivity
                 Village.VillageListener,
                 SantaContext,
                 LaunchCountdown.LaunchCountdownContext,
-                HasSupportFragmentInjector {
+                HasAndroidInjector {
 
     private static final String VILLAGE_TAG = "VillageFragment";
     // request code for games Activities
     private static final int RC_STARTUP = 1111;
     final Rect mSrcRect = new Rect();
-    @Inject DispatchingAndroidInjector<Fragment> mAndroidInjector;
+    @Inject DispatchingAndroidInjector<Object> mAndroidInjector;
     @Inject ViewModelProvider.Factory mViewModelFactory;
     @Inject Config mConfig;
     @Inject Clock mClock;
@@ -132,7 +132,7 @@ public class TvStartupActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
 
         mVillageViewModel =
-                ViewModelProviders.of(this, mViewModelFactory).get(VillageViewModel.class);
+                new ViewModelProvider(this, mViewModelFactory).get(VillageViewModel.class);
 
         setContentView(R.layout.layout_startup_tv);
 
@@ -533,7 +533,7 @@ public class TvStartupActivity extends FragmentActivity
     }
 
     @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
+    public AndroidInjector<Object> androidInjector() {
         return mAndroidInjector;
     }
 }

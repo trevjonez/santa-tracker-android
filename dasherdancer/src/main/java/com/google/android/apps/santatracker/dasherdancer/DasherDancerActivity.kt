@@ -285,7 +285,7 @@ class DasherDancerActivity : OnDemandActivity(), OnGestureListener, OnScaleGestu
     }
 
     override fun onScroll(
-        e1: MotionEvent,
+        e1: MotionEvent?,
         e2: MotionEvent,
         distanceX: Float,
         distanceY: Float
@@ -298,16 +298,16 @@ class DasherDancerActivity : OnDemandActivity(), OnGestureListener, OnScaleGestu
     }
 
     override fun onFling(
-        e1: MotionEvent,
+        e1: MotionEvent?,
         e2: MotionEvent,
         velocityX: Float,
         velocityY: Float
     ): Boolean {
-        val xDelta = Math.abs(e1.x - e2.x)
-        val yDelta = Math.abs(e1.y - e2.y)
+        val xDelta = Math.abs((e1?.x ?: 0F) - e2.x)
+        val yDelta = Math.abs((e1?.y ?: 0F) - e2.y)
         if (xDelta > yDelta) {
             // Moving side to side.
-            if (e1.x > e2.x) {
+            if ((e1?.x ?: 0F) > e2.x) {
                 // Moving left.
                 if (!animPlaying) {
                     soundId = soundIds[pager.currentItem][Character.ANIM_SWIPE_LEFT]
@@ -324,7 +324,7 @@ class DasherDancerActivity : OnDemandActivity(), OnGestureListener, OnScaleGestu
                         characters[pager.currentItem].getFrameIndices(
                                 Character.ANIM_SWIPE_LEFT),
                         characters[pager.currentItem].getFrames(Character.ANIM_SWIPE_LEFT))
-            } else if (e2.x > e1.x) {
+            } else if (e2.x > (e1?.x ?: 0F)) {
                 // Moving right.
                 if (!animPlaying) {
                     soundId = soundIds[pager.currentItem][Character.ANIM_SWIPE_RIGHT]
@@ -345,7 +345,7 @@ class DasherDancerActivity : OnDemandActivity(), OnGestureListener, OnScaleGestu
             }
         } else {
             // We are moving up and down
-            if (e1.y > e2.y) {
+            if ((e1?.y ?: 0F) > e2.y) {
                 // Moving up.
                 if (!animPlaying) {
                     soundId = soundIds[pager.currentItem][Character.ANIM_SWIPE_UP]
@@ -362,7 +362,7 @@ class DasherDancerActivity : OnDemandActivity(), OnGestureListener, OnScaleGestu
                         characters[pager.currentItem].getFrameIndices(
                                 Character.ANIM_SWIPE_UP),
                         characters[pager.currentItem].getFrames(Character.ANIM_SWIPE_UP))
-            } else if (e2.y > e1.y) {
+            } else if (e2.y > (e1?.y ?: 0F)) {
                 // Moving down.
                 if (!animPlaying) {
                     soundId = soundIds[pager.currentItem][Character.ANIM_SWIPE_DOWN]

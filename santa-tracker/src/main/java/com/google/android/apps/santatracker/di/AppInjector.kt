@@ -25,8 +25,8 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.apps.santatracker.SantaApplication
 import com.google.android.apps.santatracker.tracker.di.Injectable
 import dagger.android.AndroidInjection
+import dagger.android.HasAndroidInjector
 import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.HasSupportFragmentInjector
 
 /**
  * Helper class to inject Activity/Fragment that marked as [Injectable] (or implements
@@ -82,7 +82,7 @@ object AppInjector {
 
     @JvmStatic
     private fun handleActivity(activity: Activity) {
-        if (activity is Injectable || activity is HasSupportFragmentInjector) {
+        if (activity is Injectable || activity is HasAndroidInjector) {
             AndroidInjection.inject(activity)
         }
         if (activity is FragmentActivity) {
